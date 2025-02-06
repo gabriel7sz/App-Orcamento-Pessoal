@@ -28,6 +28,9 @@ function cadastrarDespesa() {
         valor.value
     );
 
-    console.log(despesa);
-
+    gravar(despesa)
 };
+function gravar(d) {
+    // retorna um obj de manipulação do local storage do browser.
+    localStorage.setItem('despesa', JSON.stringify(d))
+}; 

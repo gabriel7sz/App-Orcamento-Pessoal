@@ -1,0 +1,23 @@
+Os navegadores modernos, de forma geral, implementam recursos de armazenamento de dados dentro
+de si mesmo. Antes do HTML5 utilizava-se muito o recurso de cookies. Porém após o HTML5, os
+browsers começaram a implementar outros métodos de armazenamento locais de dados.
+
+Os cookies especificamente funcionam como dados que ficam armazenados no lado do cliente, e 
+sempre que há um requisição HTTP, os cookies são anexados a esta requisição de tal modo que 
+o servidor tenha CONDIÇÕES de extrair, analisar e trabalhar nesssa lógica de informações 
+cadastradas do lado do cliente. E claro, logo após esse processamento, fazer o retorno 
+da requisição solicitada pelo cliente. Um dos maiores exemplos de cookies são os sites 
+E-commerc.
+
+O recurso de cookies foi e é, ainda muito utilizado no mundo moderno. Porém	a outras 
+possibildiades de recursos como Local Storage e Session Storage. Que são bem semelhantes ao
+recurso de cookies, a diferença, é que este tipo de armazenamento quando é utilizado, os dados
+armazenados não são anexados em requisições HTTP. Ou seja, ficam de fato no navegador de forma
+análoga a um banco de dados para aplicação frontEnd. Além disso, Local Storage e Session Storage
+suporta uma quantidade maior de dados que o recurso de cookies. E a diferença ENTRE eles, é que:
+Session Storage armazena a informação enquanto o browser, ou instância do navegador está ativa
+e quando fechamos o navegador todas as informações armazenados no Session Storagem são perdidas.
+Já Local Storage é um armazenamento persistente. Pode-se armazenar as informações, fechar o 
+navegador ou reiniciar á máquina, que os dados permanecerão armazenados até que sejam 
+intencionalmente removidos.
+  
