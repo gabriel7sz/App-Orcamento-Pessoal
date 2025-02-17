@@ -56,7 +56,7 @@ class Bd {
             //recuperar despesa
             let despesa = JSON.parse(localStorage.getItem(i))
 
-            //existe a possiildiade de haver índices que foram pulados / removidos
+            //existe a possilidade de haver índices que foram pulados / removidos
             //nesse caso, apenas pula-se esses índices.
             if(despesa === null) {
                 continue
@@ -68,20 +68,21 @@ class Bd {
         return despesas
     
     }
+
+    pesquisar(despesa) {
+        console.log(despesa);
+    }
 } 
 
 let bd = new Bd() 
 
-
 function cadastrarDespesa() {
-    
     let ano = document.getElementById('ano');
     let mes = document.getElementById('mes');
     let dia =document.getElementById('dia');
     let tipo =document.getElementById('tipo');
     let descricao = document.getElementById('descricao');
     let valor = document.getElementById('valor');
-    
     let despesa = new Despesa(
         ano.value, 
         mes.value, 
@@ -93,7 +94,7 @@ function cadastrarDespesa() {
 
     if(despesa.validarDadaos()) {
         //dialog de sucesso
-        bd.gravar(despesa)
+        // bd.gravar(despesa)
 
         document.getElementById('modal_titulo').innerHTML = 'Registro inserido com sucesso!';
         document.getElementById('modal_titulo_div').className = 'modal-header text-success';
@@ -144,7 +145,7 @@ function carregaListaDespesas() {
     //percorrer o array despesas, listando cada despesa de forma dinamica
     despesas.forEach(function(d) {
 
-        console.log(d);
+        // console.log(d);
 
         //criando as linhas
         let linha = listaDespesas.insertRow()
@@ -165,9 +166,20 @@ function carregaListaDespesas() {
             case '5': d.tipo = 'Transporte'
         }   
         linha.insertCell(1).innerHTML = d.tipo
-
         linha.insertCell(2).innerHTML = d.descricao 
         linha.insertCell(3).innerHTML = d.valor
     })
 }   
 
+function pesquisarDespesa() {
+    let ano = document.getElementById('ano').value
+    let mes = document.getElementById('mes').value
+    let dia = document.getElementById('dia').value
+    let tipo = document.getElementById('tipo').value
+    let descricao = document.getElementById('descricao').value
+    let valor = document.getElementById('valor').value
+    
+    let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+
+    bd.pesquisar(despesa)
+}
