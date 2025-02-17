@@ -100,10 +100,18 @@ function cadastrarDespesa() {
         document.getElementById('modal_conteudo').innerHTML = 'Despesa cadastrada com sucesso!'
         document.getElementById('modal_btn').innerHTML = 'Voltar';
         document.getElementById('modal_btn').className = 'btn btn-success';
-
-        $('#modalRegistraDespesa').modal('show');
         
-    } else {
+        $('#modalRegistraDespesa').modal('show');
+
+        // corrigindo bug, após cadastro, removendo os últimos valores cadastrados dos inputs
+        ano.value = ''
+        mes.value = ''
+        dia.value = ''
+        tipo.value = ''
+        descricao.value = ''
+        valor.value = ''
+        
+    } else {        
         //dialog de erro
 
         document.getElementById('modal_titulo').innerHTML = 'Erro na inclusão do registro.'
@@ -155,7 +163,7 @@ function carregaListaDespesas() {
             case '4': d.tipo = 'Saúde'
             break
             case '5': d.tipo = 'Transporte'
-        }
+        }   
         linha.insertCell(1).innerHTML = d.tipo
 
         linha.insertCell(2).innerHTML = d.descricao 
