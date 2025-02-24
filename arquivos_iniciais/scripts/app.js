@@ -62,6 +62,7 @@ class Bd {
                 continue
             }
 
+            despesa.id = i
             despesas.push(despesa)
         } 
 
@@ -117,6 +118,10 @@ class Bd {
         
         return despesasFiltradas
     }
+
+    remover(id) {
+        localStorage.removeItem(id)
+    }
 } 
 
 let bd = new Bd() 
@@ -139,7 +144,7 @@ function cadastrarDespesa() {
 
     if(despesa.validarDadaos()) {
         //dialog de sucesso
-        // bd.gravar(despesa)
+        bd.gravar(despesa)
 
         document.getElementById('modal_titulo').innerHTML = 'Registro inserido com sucesso!';
         document.getElementById('modal_titulo_div').className = 'modal-header text-success';
@@ -178,14 +183,6 @@ function carregaListaDespesas() {
 
     //selecionando o elemento tbody da tabela   
     let listaDespesas = document.getElementById('listaDespesas')
-    /*
-        <tr>
-            <td>11/02/2025</td>
-            <td>Educação</td>
-            <td>Curso Prog</td>
-            <td>170,00</td>
-        </tr>
-    */ 
 
     //percorrer o array despesas, listando cada despesa de forma dinamica
     despesas.forEach(function(d) {
@@ -213,6 +210,26 @@ function carregaListaDespesas() {
         linha.insertCell(1).innerHTML = d.tipo
         linha.insertCell(2).innerHTML = d.descricao 
         linha.insertCell(3).innerHTML = d.valor
+
+        //criando botão e exclusão
+        let btn = document.createElement("button")
+        btn.className = 'btn btn-danger'
+        btn.innerHTML = '<i class= "fas fa-times"></i>'
+        btn.id = `id_despesa_${d.id}`
+        btn.onclick = function() {
+            // logica para remover despesa
+            
+            //formatando a string
+            let id = this.id.replace('id_despesa_', '')
+            
+            bd.remover(id)
+
+            window.location.reload()
+        }
+        linha.insertCell(4).append(btn)
+
+        console.log(d);
+
     })
 }   
 
